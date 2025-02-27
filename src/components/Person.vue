@@ -1,46 +1,31 @@
 <template>
     <div class="person">
-        <h2>一辆{{ car.brand }}车,价值{{ car.price }}万</h2>
-        <button @click="changeCarPrice">更改价格</button>
-        <button @click="changeCar">更改车辆</button>
-        <br>
-        <h2>一本由{{ book.author }}书写的小说，有{{ book.numbers }}页</h2>
-        <button @click="changeBookNumbers">写书</button>
-        <button @click="changeBook">换书</button>
+       <h2>姓名：{{ person.name }}</h2>
+       <h2>年龄：{{ person.age }}</h2>
+       <button @click="changeName">修改名称</button>
+       <button @click="changeAge">修改年龄</button>
     </div>
 </template>
 
-<!-- 本质上展示给页面的内容只是由变量赋值的响应式对象，如果使用新的响应式进行赋值，不会改变页面已有的响应式对象 -->
 <script lang="ts" setup name="Person">
-    import {reactive, ref} from 'vue'
-    let car = ref({
-        brand:'奔驰',
-        price:100,
+    import { reactive, toRef, toRefs } from 'vue'
+    let person = reactive({
+        name:'张三',
+        age:18,
     })
+
+    let {name, age} = toRefs(person);
+    let name2 = toRef(person, 'name');
+
+    function changeName(){
+        name2.value = '林语堂';
+        console.log(person.name, name2.value);
+    }
     
-    let book = reactive({
-        author:'第七夜',
-        numbers:131,
-    })
-
-    function changeCarPrice(){
-        car.value.price += 10;
+    function changeAge(){
+        age.value += 10;
+        console.log(person.age, age.value);
     }
-
-    function changeCar(){
-        // ref的对象直接更换，value下为响应式内容
-        car.value = {price:1010, brand:'宝马'}
-    }
-
-    function changeBookNumbers(){
-        book.numbers += 10;
-    }
-    function changeBook(){
-        // reactive需要使用Object中的assign进行对象整体内容的更新，否则不为响应式
-        Object.assign(book, {author:'三天两觉', numbers:298});
-    }
-
-
 </script>
 
 <style scoped>
