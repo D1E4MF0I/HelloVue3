@@ -4,11 +4,20 @@
        <h2>年龄：{{ person.age }}</h2>
        <button @click="changeName">修改名称</button>
        <button @click="changeAge">修改年龄</button>
+       <hr>
+       <ul>
+        <!-- : = v-bind 标识此处执行js命令 -->
+        <!-- <li v-for="game in games" ：key=""> -->
+        <li v-for="game in games" key="">
+            {{ game }}
+        </li>
+       </ul>
+       <button @click="changeGames">点击切换游戏</button>
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import { reactive, toRef, toRefs } from 'vue'
+    import { reactive, ref, toRef, toRefs } from 'vue'
     let person = reactive({
         name:'张三',
         age:18,
@@ -16,6 +25,14 @@
 
     let {name, age} = toRefs(person);
     let name2 = toRef(person, 'name');
+    let games = ref(['S7', 'ZZZ', 'BM']);
+    function changeGames(){
+        let gameList = games.value;
+        gameList[0] = 'AAA';
+        gameList[1] = 'BBB';
+        gameList[2] = 'CCC';
+
+    }
 
     function changeName(){
         name2.value = '林语堂';
