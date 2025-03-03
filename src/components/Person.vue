@@ -1,47 +1,41 @@
 <template>
     <div class="person">
-       <h2>姓名：{{ person.name }}</h2>
-       <h2>年龄：{{ person.age }}</h2>
-       <button @click="changeName">修改名称</button>
-       <button @click="changeAge">修改年龄</button>
-       <hr>
-       <ul>
-        <!-- : = v-bind 标识此处执行js命令 -->
-        <!-- <li v-for="game in games" ：key=""> -->
-        <li v-for="game in games" key="">
-            {{ game }}
-        </li>
-       </ul>
-       <button @click="changeGames">点击切换游戏</button>
+       姓：<input type="text" v-model="fName"> <br>
+       名：<input type="text" v-model="lName"> <br>
+       全名：<span>{{ fullName }}</span> <br>
+       <button @click="changeFullNameLS">更改名称为Li-Si</button>
+       <button @click="changeFullNameZS">更改名称为Li-Si</button>
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import { reactive, ref, toRef, toRefs } from 'vue'
-    let person = reactive({
-        name:'张三',
-        age:18,
-    })
+import { computed, ref } from 'vue';
 
-    let {name, age} = toRefs(person);
-    let name2 = toRef(person, 'name');
-    let games = ref(['S7', 'ZZZ', 'BM']);
-    function changeGames(){
-        let gameList = games.value;
-        gameList[0] = 'AAA';
-        gameList[1] = 'BBB';
-        gameList[2] = 'CCC';
+    let fName = ref('A');
+    let lName = ref('B');
 
-    }
+    /* 此种写法为只读，无法再次操作 */
+    // let fullName = computed(()=>{
+    //     return fName.value + '-' + lName.value
+    // });
 
-    function changeName(){
-        name2.value = '林语堂';
-        console.log(person.name, name2.value);
-    }
-    
-    function changeAge(){
-        age.value += 10;
-        console.log(person.age, age.value);
+    /* 本质是传入一个带有set和get方法的对象，通过对象中的方法进行更改，避免只读无法更改的情况 */
+    let fullName = computed({
+        get(){
+            return fName.value + '-' + lName.value;
+        },
+        /* 传入内容为Li-Si，即fullName.value = 'Li-Si'此处设置值 */
+        set(val){
+            const [f, l] = val.split('-');
+            fName.value = f;
+            lName.value = l;
+        }
+    });
+
+    function changeFullNameLS(){
+        fullName.value = 'Li-Si';
+    }function changeFullNameZS(){
+        fullName.value = 'Zhang-San';
     }
 </script>
 
