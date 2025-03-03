@@ -8,9 +8,11 @@
     </div>
 </template>
 
-<script lang="ts" setup name="Person">
-import { computed, ref } from 'vue';
-
+<script lang="ts" setup>
+    defineOptions({
+        name:'Person'
+    })
+    import { computed, ref } from 'vue';
     let fName = ref('A');
     let lName = ref('B');
 
