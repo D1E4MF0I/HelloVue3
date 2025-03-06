@@ -1,24 +1,65 @@
 <template>
     <div class="person">
-        <!-- 1. 基本类型 -->
-         <h2>Sum:{{ sum }}</h2>
-         <button @click="changeSum">点我Sum+1</button>
+         <h2>{{ car.brand }}售价：{{ car.price }}</h2>
+         <button @click="changeCarBrand">点我更改车型</button>
+         <button @click="changeCarPrice">点我更改价格</button>
+         <button @click="changeCar">点我更改整台车</button>
          
     </div>
 </template>
 
 <script lang="ts" setup>
 import { reactive, ref, watch } from 'vue';
-    /* 情况1：基本类型 */
-    let sum = ref(1);
+    
+    /* 对象 reactive默认开启深度，ref不默认*/
+    let car = ref({
+        brand:'宝马',
+        price:100_000,
+    })
 
-    function changeSum(){
-        sum.value ++ ;
+    function changeCarBrand(){
+        car.value.brand = '奇瑞';
     }
 
-    watch(sum, (newVal, oldVal)=>{
-        console.log('Sum发生变化了', newVal, oldVal);
+    function changeCarPrice(){
+        car.value.price ++;
+    }
+
+    /* 是一种替换行为，所以，未开启深度监视也可以被监视到 */
+    function changeCar(){
+        car.value = {
+            brand:'长安',
+            price:10000,
+        }
+    }
+    watch(car, (newVal, oldVal)=>{
+        console.log('Car发生了变化', newVal, oldVal);
     })
+
+    
+    // let car = reactive({
+    //     brand:'宝马',
+    //     price:100_000,
+    // })
+
+    // /* 补充:Reactive无法直接更换整个对象，但可以直接更改内部对象的值 */
+    // /* function changeCar(){
+    //     car = {brand:'长安',
+    //         price:1000,
+    //     }
+    // } */
+
+    // function changeCarBrand(){
+    //     car.brand = '奇瑞';
+    // }
+
+    // function changeCarPrice(){
+    //     car.price += 100;
+    // }
+
+    // watch(car, (newVal, oldVal)=>{
+    //     console.log('Car发生了变化', newVal, oldVal);
+    // }, {deep:false})
 </script>
 
 <style scoped>
