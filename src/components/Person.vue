@@ -1,40 +1,28 @@
 <template>
     <div class="person">
-        <h2>监控{{ f }} + {{ s }} = {{ sum }}</h2>
-        <button @click="changeF">改变第一个</button>
-        <button @click="changeS">改变第二个</button>
+        <h1>中国</h1>
+        <h2 ref="location">重庆</h2>
+        <h3>重科</h3>
+        <button @click="consoleH2">输出H2</button>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 
-   let f = ref(0);
-   let s = ref(20);
-   let sum = computed({
-        get(){
-            return f.value + s.value;
-        },
-        set(val){
-            console.log(val);
-        }
-   })
+    let location = ref();
 
-   function changeF(){
-        f.value += 10;
-   }function changeS(){
-        s.value += 10;
-   }
-   
-   watchEffect((val)=>{
-        if(f.value >= 60){
-            console.log('f超过60了');
-        }
-        if(s.value >= 100){
-            console.log('s大于等于100了');
-        }
-        console.log(val);
-   })
+    let a = 0;
+    let b = 1;
+    let c = 2;
+
+    function consoleH2(){
+        /* <h2 data-v-4cadc14e="">重庆</h2> */
+        /* 其中data-v-4cadc14e= 是style中scoped标签作用，用于隔离样式 */
+        console.log(location.value);
+    }
+
+    defineExpose({a, b, c})
 </script>
 
 <style scoped>
