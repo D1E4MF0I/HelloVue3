@@ -1,18 +1,26 @@
 <template>
-    <Person />
+    <div class="app">
+        <h2 class="title">Vue路由测试</h2>
+        <!-- 导航区 -->
+         <div class="navigate">
+            <RouterLink to="/home">首页</RouterLink>
+            <RouterLink to="/news">新闻</RouterLink>
+            <RouterLink to="/about">关于</RouterLink>
+         </div>
+         <!-- 展示区 -->
+          <div class="main-content">
+            <RouterView />
+          </div>
+    </div>
 </template>
 
 <script lang="ts" setup>
+    import { RouterView, RouterLink } from 'vue-router';
+
     defineOptions({name:'App'})
-    import Person from './components/Person.vue'
 
 </script>
 
 <style>
-    .app{
-        background-color: #ddd;
-        box-shadow: 0 0 10px;
-        border-radius: 10px;
-        padding: 20px;
-    }
+
 </style>
