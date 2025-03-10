@@ -1,18 +1,19 @@
 <template>
  <div>
     <ul>
-        <li>id:{{ params.id }}</li>
-        <li>title:{{ params.title }}</li>
-        <li>content:{{ params.content }}</li>
+        <li>id:{{ id }}</li>
+        <li>title:{{ title }}</li>
+        <li>content:{{ content }}</li>
+        <!-- <li>id:{{ x }}</li>
+        <li>title:{{ y }}</li>
+        <li>content:{{ z }}</li> -->
     </ul>
  </div>
 </template>
 
 <script setup lang='ts'>
-    import {toRefs} from 'vue'
-    import {useRoute} from 'vue-router'
-    const route = useRoute()
-    const {params} = toRefs(route);
+    defineProps(['id', 'title', 'content'])
+    // defineProps(['x', 'y', 'z'])
 </script>
 <style scoped>
 

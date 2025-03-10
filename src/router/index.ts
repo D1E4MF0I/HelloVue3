@@ -25,8 +25,24 @@ const router = createRouter({
             children:[
                 {
                     name:'xiangqing',
-                    path:'detail/:id/:title/:content',
+                    // path:'detail/:id/:title/:content',
+                    path:'detail',
                     component:Detail,
+
+                    // 写法1：将路由收到的params参数作为props传给路由组件
+                    // props:true,
+
+                    // 写法2：函数写法，可以自己决定将什么作为props给路由组件
+                    props(route){
+                        return route.query
+                    }
+
+                    // 写法3：对象写法，可以自己决定将什么作为props给路由组件
+                    // props:{
+                    //     x:100,
+                    //     y:200,
+                    //     z:300,
+                    // }
                 }
             ]
         },

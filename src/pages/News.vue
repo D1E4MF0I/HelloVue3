@@ -7,7 +7,12 @@
                  <RouterLink :to="{
                     name:'xiangqing',
                     // path:'/news/detail', 此处无法使用path，必须使用name
-                    params:{
+                    // params:{
+                    //     id:news.id,
+                    //     title:news.title,
+                    //     content:news.content,
+                    // }
+                    query:{
                         id:news.id,
                         title:news.title,
                         content:news.content,
