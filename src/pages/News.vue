@@ -2,24 +2,17 @@
     <div>
         <ul>
             <li v-for="news in newsList" :key="news.id">
-                <!-- 索引到子级路由
-                 <RouterLink to="/news/detail">{{ news.title }}</RouterLink> -->
-                <!-- 通过模板字符串形式进行query传参
-                 <RouterLink :to="`/news/detail?id=${news.id}&title=${news.title}&content=${news.content}`">{{ news.title }}</RouterLink> -->
-                <!-- 通过对象参数形式进行传参
-                 PS：子级路由也可以通过name进行直接跳转 -->
-                <RouterLink :to="{
+                 <!-- <RouterLink to="/news/detaild/你好/哈哈/嘿嘿">{{ news.title }}</RouterLink> -->
+                 <!-- <RouterLink :to="`/news/detail/${news.id}/${news.title}/${news.content}`">{{ news.title }}</RouterLink> -->
+                 <RouterLink :to="{
                     name:'xiangqing',
-                    // path:'/news/detail',
-                    query:{
+                    // path:'/news/detail', 此处无法使用path，必须使用name
+                    params:{
                         id:news.id,
                         title:news.title,
                         content:news.content,
                     }
-                }">
-                    {{ news.title }}
-                </RouterLink>
-
+                 }">{{ news.title }}</RouterLink>
             </li>
         </ul>
     </div>

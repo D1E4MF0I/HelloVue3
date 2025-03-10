@@ -1,24 +1,18 @@
 <template>
  <div>
     <ul>
-        <li>id:{{ query.id }}</li>
-        <li>title:{{ query.title }}</li>
-        <li>content:{{ query.content }}</li>
+        <li>id:{{ params.id }}</li>
+        <li>title:{{ params.title }}</li>
+        <li>content:{{ params.content }}</li>
     </ul>
  </div>
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive, toRefs } from 'vue'
-import {useRoute} from 'vue-router'
-let route = useRoute();
-
-/* 下面方法会使得query失去响应式功能 */
-// let {query} = route;
-
-/* 通过toRefs，获得route中query的地址，从而实现响应式 */
-let {query} = toRefs(route);
-
+    import {toRefs} from 'vue'
+    import {useRoute} from 'vue-router'
+    const route = useRoute()
+    const {params} = toRefs(route);
 </script>
 <style scoped>
 
