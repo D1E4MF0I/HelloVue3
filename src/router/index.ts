@@ -1,9 +1,9 @@
 // 创建一个路由器，并暴露出去
 
 // 引入
-import About from "@/components/About.vue";
-import Home from "@/components/Home.vue";
-import News from "@/components/News.vue";
+import About from "@/pages/About.vue";
+import Home from "@/pages/Home.vue";
+import News from "@/pages/News.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 // 创建路由器
