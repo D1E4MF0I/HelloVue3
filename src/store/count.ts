@@ -18,5 +18,15 @@ export const useCountStore = defineStore('count', {
             sum:1,
             school:'abc',
         }
-    }
+    },
+    // 数据不满意可以通过getters对数据进行处理
+    getters:{
+        // bigSum(state) {
+        //     return state.sum * 10
+        // },
+        bigSum:state => state.sum * 10,
+        upperSchool():string{
+            return this.school.toUpperCase()
+        }
+    },
 })
