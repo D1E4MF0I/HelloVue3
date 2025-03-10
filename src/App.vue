@@ -1,26 +1,20 @@
 <template>
-    <div class="app">
-        <h2 class="title">Vue路由测试</h2>
-        <!-- 导航区 -->
-         <div class="navigate">
-            <RouterLink to="/home">首页</RouterLink>
-            <RouterLink to="/news">新闻</RouterLink>
-            <RouterLink :to="{path:'/about'}">关于</RouterLink>
-         </div>
-         <!-- 展示区 -->
-          <div class="main-content">
-            <RouterView />
-          </div>
-    </div>
+ <div>
+    <Count/>
+    <LoveTalk/>
+ </div>
 </template>
 
-<script lang="ts" setup>
-    import { RouterView, RouterLink } from 'vue-router';
+<script setup lang='ts'>
+import { ref, reactive } from 'vue'
+import Count from './components/Count.vue'
+import LoveTalk from './components/LoveTalk.vue'
 
-    defineOptions({name:'App'})
+defineOptions({
+  name: 'App'
+})
 
 </script>
-
-<style>
+<style scoped>
 
 </style>
