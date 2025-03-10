@@ -1,6 +1,7 @@
 <template>
  <div class="count">
   <h2>当前求和为:{{ countStore.sum }}</h2>
+  <h3>欢迎来到{{ countStore.school }}</h3>
   <select v-model.number="n">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -19,17 +20,24 @@ defineOptions({
   name: 'Count'
 })
 
+// 使用useCountStore，得到一个专门保存count相关的store
 const countStore = useCountStore()
 
-// 以下两种方式都可以拿到state中的数据
-// console.log(countStore.sum);
-// console.log(countStore.$state.sum);
-
-
 // 数据
-let n = ref(1) // 用户选择的数字
+let n = ref(3) // 用户选择的数字
 
 function add() {
+  // 第一种修改方式
+  // countStore.sum += 1;
+
+  // 第二种 数据较多的时候
+  // countStore.$patch({
+  //   sum:888,
+  //   school:'sgg',
+  // })
+
+  //第三种修改 actions
+  countStore.increment(n.value);
 
 }
 function minus() {
