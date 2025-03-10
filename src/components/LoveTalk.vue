@@ -2,7 +2,7 @@
  <div class="talk">
   <button @click="getLoveTalk">获取一句土味情话</button>
   <ul>
-    <li v-for="talk in talkList" :key="talk.id">
+    <li v-for="talk in loveTalkStore.talkList" :key="talk.id">
         {{ talk.title }}
     </li>
   </ul>
@@ -13,26 +13,14 @@
 import { ref, reactive } from 'vue'
 import axios from 'axios'
 import {nanoid} from 'nanoid'
+import { useLoveTalkStore } from '@/store/loveTalk'
+
+const loveTalkStore = useLoveTalkStore();
 
 defineOptions({
   name: 'LoveTalk'
 })
 
-// 数据
-let talkList = reactive([
-    {
-        id:'1',
-        title:'1',
-    },
-    {
-        id:'2',
-        title:'2',
-    },
-    {
-        id:'3',
-        title:'3',
-    },
-])
 
 // 方法
 async function getLoveTalk() {
@@ -40,13 +28,13 @@ async function getLoveTalk() {
     // let res =  axios.get('https://api.1314.cool/words/api.php?return=json')
 
     // 模拟
-    let title = 'test01'
+    // let title = 'test01'
 
     // 请求回来的数据包装成一个对象
-    let obj = {id:nanoid(), title}
+    // let obj = {id:nanoid(), title}
 
     //  放到数组中
-    talkList.unshift(obj)
+    // talkList.unshift(obj)
 }
 
 </script>
