@@ -1,7 +1,7 @@
 <template>
  <div class="count">
-  <h2>当前求和为:{{ countStore.sum }}</h2>
-  <h3>欢迎来到{{ countStore.school }}</h3>
+  <h2>当前求和为:{{ sum }}</h2>
+  <h3>欢迎来到{{ school }}</h3>
   <select v-model.number="n">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -15,6 +15,7 @@
 <script setup lang='ts'>
 import { ref, reactive } from 'vue'
 import {useCountStore} from '@/store/count'
+import { storeToRefs } from 'pinia'
 
 defineOptions({
   name: 'Count'
@@ -22,26 +23,18 @@ defineOptions({
 
 // 使用useCountStore，得到一个专门保存count相关的store
 const countStore = useCountStore()
+// 只会将数据作为响应式的，toRefs是将所有内容生成响应式的
+const {sum, school} = storeToRefs(countStore)
 
 // 数据
-let n = ref(3) // 用户选择的数字
+let n = ref(1) // 用户选择的数字
 
 function add() {
-  // 第一种修改方式
-  // countStore.sum += 1;
-
-  // 第二种 数据较多的时候
-  // countStore.$patch({
-  //   sum:888,
-  //   school:'sgg',
-  // })
-
-  //第三种修改 actions
-  countStore.increment(n.value);
+  countStore.increment(n.value)
 
 }
 function minus() {
-
+  countStore.sum -= n.value
 }
 
 </script>

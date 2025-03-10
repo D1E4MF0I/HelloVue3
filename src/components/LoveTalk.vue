@@ -2,7 +2,7 @@
  <div class="talk">
   <button @click="getLoveTalk">获取一句土味情话</button>
   <ul>
-    <li v-for="talk in loveTalkStore.talkList" :key="talk.id">
+    <li v-for="talk in talkList" :key="talk.id">
         {{ talk.title }}
     </li>
   </ul>
@@ -10,13 +10,11 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive } from 'vue'
-import axios from 'axios'
-import {nanoid} from 'nanoid'
 import { useLoveTalkStore } from '@/store/loveTalk'
+import { storeToRefs } from 'pinia';
 
 const loveTalkStore = useLoveTalkStore();
-
+const {talkList} = storeToRefs(loveTalkStore)
 defineOptions({
   name: 'LoveTalk'
 })
