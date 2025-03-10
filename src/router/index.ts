@@ -2,6 +2,7 @@
 
 // 引入
 import About from "@/pages/About.vue";
+import Detail from "@/pages/Detail.vue";
 import Home from "@/pages/Home.vue";
 import News from "@/pages/News.vue";
 import { createRouter, createWebHistory, createWebHashHistory } from "vue-router";
@@ -20,6 +21,14 @@ const router = createRouter({
             name:'xinwen',
             path:'/news',
             component:News,
+            /* 配置子级路由 子级路由path不添加‘/’ */
+            children:[
+                {
+                    name:'xiangqing',
+                    path:'detail',
+                    component:Detail,
+                }
+            ]
         },
         {
             name:'guanyu',
