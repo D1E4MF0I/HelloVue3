@@ -3,9 +3,9 @@
         <h2 class="title">Vue路由测试</h2>
         <!-- 导航区 -->
          <div class="navigate">
-            <RouterLink replace to="/home">首页</RouterLink>
-            <RouterLink replace to="/news">新闻</RouterLink>
-            <RouterLink replace :to="{path:'/about'}">关于</RouterLink>
+            <RouterLink to="/home">首页</RouterLink>
+            <RouterLink to="/news">新闻</RouterLink>
+            <RouterLink :to="{path:'/about'}">关于</RouterLink>
          </div>
          <!-- 展示区 -->
           <div class="main-content">

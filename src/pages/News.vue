@@ -2,22 +2,15 @@
     <div>
         <ul>
             <li v-for="news in newsList" :key="news.id">
-                 <!-- <RouterLink to="/news/detaild/你好/哈哈/嘿嘿">{{ news.title }}</RouterLink> -->
-                 <!-- <RouterLink :to="`/news/detail/${news.id}/${news.title}/${news.content}`">{{ news.title }}</RouterLink> -->
-                 <RouterLink :to="{
-                    name:'xiangqing',
-                    // path:'/news/detail', 此处无法使用path，必须使用name
-                    // params:{
-                    //     id:news.id,
-                    //     title:news.title,
-                    //     content:news.content,
-                    // }
-                    query:{
-                        id:news.id,
-                        title:news.title,
-                        content:news.content,
+                <button @click="showNewsDetail(news)">查看新闻</button>
+                <RouterLink :to="{
+                    name: 'xiangqing',
+                    query: {
+                        id: news.id,
+                        title: news.title,
+                        content: news.content,
                     }
-                 }">{{ news.title }}</RouterLink>
+                }">{{ news.title }}</RouterLink>
             </li>
         </ul>
     </div>
@@ -28,6 +21,10 @@
 
 <script lang="ts" setup>
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+
+let router = useRouter();
+
 let newsList = reactive([
     {
         id: 'test01',
@@ -45,6 +42,23 @@ let newsList = reactive([
         content: 'content03',
     },
 ])
+
+interface NewsInter {
+    id: string,
+    title: string,
+    content: string,
+}
+
+function showNewsDetail(news: NewsInter) {
+    router.replace({
+        name: 'xiangqing',
+        query: {
+            id: news.id,
+            title: news.title,
+            content: news.content,
+        }
+    })
+}
 </script>
 
 <style>
