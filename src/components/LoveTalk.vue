@@ -15,6 +15,16 @@ import { storeToRefs } from 'pinia';
 
 const loveTalkStore = useLoveTalkStore();
 const {talkList} = storeToRefs(loveTalkStore)
+/* mutate：本次修改的信息
+state：真正的数据 */
+loveTalkStore.$subscribe((mutate, state) => {
+  console.log(
+    'loveTalkStore内保存的数据发生变化',
+    mutate, 
+    state
+  );
+  localStorage.setItem('talkList', JSON.stringify(state.talkList))
+})
 defineOptions({
   name: 'LoveTalk'
 })
