@@ -2,8 +2,8 @@
  <div class="Father">
   父组件
   <h2>父亲有一台{{ car }}</h2>
-  <h3>子给的{{ toy }}</h3>
-  <Son :car="car" :sendToy="getToy"/>
+  <h3 v-show="toy">子给的{{ toy }}</h3>
+  <Son @send-toy="getToy"/>
  </div>
 </template>
 
@@ -19,8 +19,9 @@ let car = '宝马'
 let toy = ref()
 
 function getToy(value:string){
-    toy.value = value
+     toy.value = value
 }
+
 
 </script>
 <style scoped>
