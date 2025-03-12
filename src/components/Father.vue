@@ -3,13 +3,14 @@
   父组件
   <h2>父亲有一台{{ car }}</h2>
   <h3 v-show="toy">子给的{{ toy }}</h3>
-  <Son @send-toy="getToy"/>
+  <Son />
  </div>
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onUnmounted } from 'vue'
 import Son from './Son.vue';
+import emitter from '@/utils/emitter';
 
 defineOptions({
   name: 'Father'
@@ -18,9 +19,13 @@ defineOptions({
 let car = '宝马'
 let toy = ref()
 
-function getToy(value:string){
-     toy.value = value
-}
+emitter.on('send-toy', (value) => {
+  toy.value = value
+})
+
+onUnmounted(() => {
+  emitter.off('send-toy')
+})
 
 
 </script>

@@ -2,6 +2,7 @@ import {createApp} from 'vue'
 import App from './App.vue'
 // 引入pinia
 import { createPinia } from 'pinia'
+import emitter from './utils/emitter'
 
 // 第一步 创建一个应用
 const app = createApp(App)

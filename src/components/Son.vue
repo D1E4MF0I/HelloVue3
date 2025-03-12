@@ -2,20 +2,18 @@
  <div class="Son">
   子组件
   <h2>孩子有{{ toy }}</h2>
-  <button @click="emit('send-toy', toy)">点我传送toy</button>
+  <button @click="emitter.emit('send-toy', toy)">点我传送toy</button>
   <button @click="changeToy">更换玩具</button>
  </div>
 </template>
 
 <script setup lang='ts'>
+import emitter from '@/utils/emitter'
 import { ref, reactive } from 'vue'
 
 defineOptions({
   name: 'Son'
 })
-const emit = defineEmits([
-  'send-toy',
-])
 
 let toy = ref('aotumn')
 
@@ -24,6 +22,7 @@ function changeToy(){
 }
 
 </script>
+
 <style scoped>
     .Son{
       padding: 10px;
