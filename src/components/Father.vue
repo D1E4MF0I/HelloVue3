@@ -1,40 +1,26 @@
 <template>
- <div class="Father">
-  父组件
-  <h2>父亲有一台{{ car }}</h2>
-  <h3 v-show="toy">子给的{{ toy }}</h3>
-  <Son />
+ <div>
+  <h2>父组件</h2>
+  <!-- <input type="text" v-model="username"> -->
+  <!-- 等价 -->
+  <!-- <input type="text" :value="username" @input="username = (<HTMLInputElement>$event.target).value"> -->
+
+    <ATGInput v-model="username"/>
+    <!-- 等价实现 -->
+    <!-- <ATGInput :modelValue="username" @update:modelValue="username = $event" /> -->
  </div>
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive, onUnmounted } from 'vue'
-import Son from './Son.vue';
-import emitter from '@/utils/emitter';
-
+import { ref, reactive } from 'vue'
+import ATGInput from './ATGInput.vue';
 defineOptions({
-  name: 'Father'
+  name: 'Father', 
 })
 
-let car = '宝马'
-let toy = ref()
-
-emitter.on('send-toy', (value) => {
-  toy.value = value
-})
-
-onUnmounted(() => {
-  emitter.off('send-toy')
-})
-
+let username = ref('zhangsan')
 
 </script>
 <style scoped>
-    .Father{
-        padding: 10px;
-        background-color: skyblue;
-        border: 1px solid blue;
-        border-radius: 10px;
-        box-shadow: 0 0 10px;
-    }
+
 </style>
