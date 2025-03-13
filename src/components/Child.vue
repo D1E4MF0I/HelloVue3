@@ -1,10 +1,7 @@
 <template>
  <div>
   <h2>Child</h2>
-  <!-- 默认插槽 -->
-  <slot name="s1"></slot>
-  <br>
-  <slot name="s2"></slot>
+  <slot :youxi="games"></slot>
  </div>
 </template>
 
@@ -14,6 +11,21 @@ import { ref, reactive } from 'vue'
 defineOptions({
   name: 'Child', 
 })
+
+let games = [
+  {
+    id:'id1',
+    name:'game1',
+  },
+  {
+    id:'id2',
+    name:'game2',
+  },
+  {
+    id:'id3',
+    name:'game3',
+  },
+]
 
 </script>
 <style scoped>

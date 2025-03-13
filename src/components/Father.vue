@@ -2,12 +2,29 @@
  <div>
   <h2>Father</h2>
   <Child>
-    <!-- 具名插槽 v-slot:slot_name -->
-    <template v-slot:s2>
-        <div>插槽2</div>
+    <!-- <template v-slot="youxi"> -->
+    <template v-slot="{youxi}">
+      <ul>
+      <li v-for="y in youxi" :key="y.id">
+        <div>{{ y.name }}</div>
+      </li>
+    </ul>
     </template>
-    <template #s1>
-        <div>插槽1</div>
+  </Child>
+  <Child>
+    <template v-slot="{youxi}">
+      <ol>
+      <li v-for="y in youxi" :key="y.id">
+        <div>{{ y.name }}</div>
+      </li>
+    </ol>
+    </template>
+  </Child>
+  <Child>
+    <template v-slot="{youxi}">
+      <h3 v-for="y in youxi" :key="y.id">
+        <div>{{ y.name }}</div>
+      </h3>
     </template>
   </Child>
   
