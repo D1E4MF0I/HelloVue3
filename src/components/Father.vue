@@ -1,37 +1,38 @@
 <template>
  <div>
-    <h2>父组件</h2>
-    <h3>房：{{ house }}</h3>
-    <Child />
+  <h2>Father</h2>
+  <Child>
+    <span>插槽1</span>
+  </Child>
  </div>
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive, provide } from 'vue'
+import { ref, reactive } from 'vue'
 import Child from './Child.vue';
 
 defineOptions({
   name: 'Father', 
 })
 
-let house = ref(5)
-
-provide('houseContent', {house, changeHouse})
-
-function changeHouse(value:number){
-  house.value += value
-}
-
 </script>
 <style scoped>
-    div {
-        margin: 10px;
+    div{
         padding: 10px;
+        margin: 10px;
 
-        border: 1px solid black;
         background-color: skyblue;
 
+        border: 1px solid black;
         border-radius: 10px;
+
         box-shadow: 0 0 10px;
+    }
+    span{
+        border: 1px solid;
+        background-color: orange;
+        box-shadow: 0 0 10px;
+        border-radius: 10px;
+        padding: 5px;
     }
 </style>
