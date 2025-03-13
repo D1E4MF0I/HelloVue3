@@ -2,7 +2,9 @@
  <div>
   <h2>Child</h2>
   <!-- 默认插槽 -->
-  <slot></slot>
+  <slot name="s1"></slot>
+  <br>
+  <slot name="s2"></slot>
  </div>
 </template>
 

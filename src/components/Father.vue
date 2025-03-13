@@ -2,8 +2,16 @@
  <div>
   <h2>Father</h2>
   <Child>
-    <span>插槽1</span>
+    <!-- 具名插槽 v-slot:slot_name -->
+    <template v-slot:s2>
+        <div>插槽2</div>
+    </template>
+    <template #s1>
+        <div>插槽1</div>
+    </template>
   </Child>
+  
+  
  </div>
 </template>
 
@@ -27,12 +35,5 @@ defineOptions({
         border-radius: 10px;
 
         box-shadow: 0 0 10px;
-    }
-    span{
-        border: 1px solid;
-        background-color: orange;
-        box-shadow: 0 0 10px;
-        border-radius: 10px;
-        padding: 5px;
     }
 </style>
