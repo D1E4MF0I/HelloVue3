@@ -1,26 +1,17 @@
 <template>
  <div>
-    <h2>父组件</h2>
-    <h3>房：{{ house }}</h3>
-    <Child />
+  <h2>子组件</h2>
+  <GrandChild />
  </div>
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive, provide } from 'vue'
-import Child from './Child.vue';
+import { ref, reactive } from 'vue'
+import GrandChild from './GrandChild.vue';
 
 defineOptions({
-  name: 'Father', 
+  name: 'Child', 
 })
-
-let house = ref(5)
-
-provide('houseContent', {house, changeHouse})
-
-function changeHouse(value:number){
-  house.value += value
-}
 
 </script>
 <style scoped>

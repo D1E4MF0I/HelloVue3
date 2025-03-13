@@ -1,25 +1,25 @@
 <template>
  <div>
-    <h2>子组件2</h2>
-    <h2>c2:{{ test }}</h2>
+    <h2>孙组件</h2>
     <h2>count: {{ count }}</h2>
+    <h2>house: {{ house }}</h2>
+    <button @click="changeHouse(1)">点我house+1</button>
  </div>
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive } from 'vue'
+import { ref, reactive, inject } from 'vue'
 
 defineOptions({
-  name: 'Child2', 
+  name: 'GrandChild', 
 })
-let test = ref('test2')
+
 let count = ref(1)
 
-
-defineExpose({test, count})
-
+let {house, changeHouse} = inject('houseContent', {house:0, changeHouse:(value:number) => {}})
 
 </script>
+
 <style scoped>
     div {
         margin: 10px;
