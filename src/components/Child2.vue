@@ -1,20 +1,30 @@
 <template>
-    <div>
-        <h2>父组件</h2>
-        <GrandChild v-bind="$attrs" />
-    </div>
+ <div>
+    <h2>子组件2</h2>
+    <h2>c2:{{ test }}</h2>
+    <h2>count: {{ count }}</h2>
+ </div>
 </template>
 
 <script setup lang='ts'>
 import { ref, reactive } from 'vue'
-import GrandChild from './GrandChild.vue';
+
 defineOptions({
-    name: 'Son',
+  name: 'Child2', 
 })
+let test = ref('test2')
+let count = ref(1)
+
+
+defineExpose({test, count})
+
 
 </script>
 <style scoped>
     div {
+        margin: 10px;
+        padding: 10px;
+
         border: 1px solid black;
         background-color: skyblue;
 
